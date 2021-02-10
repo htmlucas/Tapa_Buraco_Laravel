@@ -17,8 +17,10 @@ class Reclamacoes extends Migration
             $table->id();
             $table->string('nome');
             $table->string('email');
-            $table->string('endereco');
-            $table->string('observacao');
+            $table->string('cep');
+            $table->string('rua');
+            $table->string('bairro');
+            $table->string('obs');
             $table->string('status');
             $table->string('agendado');
             $table->rememberToken();

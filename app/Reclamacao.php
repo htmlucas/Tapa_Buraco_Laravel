@@ -11,6 +11,6 @@ class Reclamacao extends Model
     
     protected $table = 'reclamacoes';
     protected $fillable = [
-        'nome', 'email', 'endereco','observacao','status','agendado','created_at'
+        'nome', 'email', 'cep','rua','bairro','observacao','status','agendado','created_at'
     ];
 }

@@ -26,7 +26,9 @@ class ReclamacaoRequest extends FormRequest
         return [
             'nome' => 'required',
             'email' => 'required',
-            'endereco' => 'required',
+            'cep' => 'required',
+            'rua'=>'required',
+            'bairro'=>'required',
             'observacao' => 'required'
         ];
     }

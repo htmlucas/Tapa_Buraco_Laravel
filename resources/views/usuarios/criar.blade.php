@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<div class="container">
+@extends('layout.app')
+@section('content')
     @if($errors->any())
         <div class="row mt-3 mb-3">
             <div class="col-12">
@@ -20,7 +11,7 @@
             </div>
         </div>
     @endif   
-
+    <div class="container">
         <div class="card">
             <div class="card-header">
                 Cadastrar usuario
@@ -61,8 +52,5 @@
                 </form>
             </div>
         </div>
-</div>    
-    <script src="{{asset('js/jquery-3.5.1.min.js') }}"></script>
-    <script src="{{asset('js/boostrap.bundle.min.js') }}"></script>    
-</body>
-</html>
+    </div>
+@endsection   

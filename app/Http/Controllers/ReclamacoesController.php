@@ -36,7 +36,9 @@ class ReclamacoesController extends Controller
 
             $reclamacao->nome = $request->nome;
             $reclamacao->email = $request->email;
-            $reclamacao->endereco = $request->endereco;
+            $reclamacao->cep = $request->cep;
+            $reclamacao->rua = $request->rua;
+            $reclamacao->bairro = $request->bairro;
             $reclamacao->observacao = $request->observacao;
             $reclamacao->status = "Aberto";
             $reclamacao->agendado = "Em andamento...";
@@ -46,7 +48,7 @@ class ReclamacoesController extends Controller
 
          } catch(\Exception $e){
 
-            return redirect()->route('reclamacoes.index')->withErrors();
+            return redirect()->route('reclamacoes.index')->with('msg_error','Reclamação não foi enviada!');
         }
         return redirect()->route('reclamacoes.index')->with('msg_success','Reclamacao enviada com sucesso!');
 
