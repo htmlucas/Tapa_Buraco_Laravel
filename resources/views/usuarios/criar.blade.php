@@ -44,7 +44,6 @@
                         <label for="">Nível</label>
                         <select name="tipo_usuario" class="form-control">
                             <option {{ old('role','') == 'admin' ? 'selected' : ''}} value="admin">Administrador</option>
-                            <option {{ old('role','') == 'usuario' ? 'selected' : ''}} value="usuario" value="">Usuario</option>
                             <option {{ old('role','') == 'usuario' ? 'selected' : ''}} value="funcionario" value="">Funcionario</option>
                         </select>
                     </div>

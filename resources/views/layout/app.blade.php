@@ -15,12 +15,14 @@
             <a class="navbar-brand" href="index.html">Slape Hole </a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" data-toggle="tooltip" data-placement="bottom" title="Ocultar/Mostrar barra lateral" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar-->
-            @if(auth()->user())
-                            <div class="sb-sidenav-footer text-white">
-                                <div class="nav-item">{{ auth()->user()->nome }}</div>
-                            </div>   
-                           
-                        @endif 
+            <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                @if(auth()->user())
+                    <div class="sb-sidenav-footer text-white">
+                        <div class="nav-item">{{ auth()->user()->nome }}</div>
+                    </div>                          
+                @endif 
+            </div>
+           
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"  id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -47,16 +49,14 @@
                             @if(auth()->user())
                                 @if(auth()->user()->tipo_usuario == 'funcionario')
                                 
-                                <div class="sb-sidenav-menu-heading"><div class="sb-nav-link-icon"><i class="fas fa-hammer mr-2"></i>Interface do Funcionário</div>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsereclamacao" aria-expanded="false" aria-controls="collapsereclamacao">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt mr-2"></i>
+                                <div class="sb-sidenav-menu-heading"><div class="sb-nav-link-icon"><i class="fas fa-hammer mr-2"></i> Interface do Funcionário</div></div>
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseagenda" aria-expanded="false" aria-controls="collapseagenda">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt mr-2"></i></div>
                                     Agenda 
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
-                                <div class="collapse" id="collapsereclamacao" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <div class="collapse" id="collapseagenda" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                     <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="{{ route('reclamacoes.index')}}">Reclamações em Aberto</a>
-                                        <a class="nav-link" href="#">Reclamações encerradas</a>
                                         <form action="{{route('reclamacoes.ordens',auth()->user()->id)}}" method="POST">
                                             @csrf
                                                 <button class="btn btn-link nav-link" type="submit">Trabalhos</button>                                          
@@ -85,10 +85,10 @@
                             @if(auth()->user())
                                 @if(auth()->user()->tipo_usuario == 'admin')
 
-                                <div class="sb-sidenav-menu-heading">Interface do Administrador<div>
+                                <div class="sb-sidenav-menu-heading">Interface do Administrador</div>
                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseadmin" aria-expanded="false" aria-controls="collapseadmin">
                                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                        Funcionarios
+                                        Administrador
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                 <div class="collapse" id="collapseadmin" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
@@ -97,24 +97,36 @@
                                         <a class="nav-link" href="{{ route('usuarios.index')}}">Lista de usuarios no sistema</a>
                                     </nav>
                                 </div>
-
                                 @endif                               
                             @endif    
- 
-                        @if(auth()->user())
-                            <div class="d-flex justify-content-center flex-column sb-sidenav-footer text-white">
-                                <div class="small">Logado como: {{ auth()->user()->nome }}</div>
-                                <div class="">{{auth()->user()->tipo_usuario}}</div>
-                                <i class="fas fa-user-shield"></i>
-                            </div>   
-                           
-                        @endif 
-                   
+                        </div>
+                    </div>
+                            @if(auth()->user())
+                                <div class="sb-sidenav-footer text-white">
+                                    <div class="small">Logado como : {{ auth()->user()->nome }}</div>
+                                    <div class="">Tipo de usuário : {{auth()->user()->tipo_usuario}}</div>
+                                    @if(auth()->user()->tipo_usuario == 'admin')<i class="fas fa-user-shield"></i>@endif
+                                </div>                            
+                            @endif 
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
+
+                    @if($errors->any())
+                        <div class="row mt-3 mb-3">
+                            <div class="col-12">
+                                <div class="alert alert-danger" role="alert">
+                                    @foreach($errors->all() as $error)
+                                        <div class="">{{ $error }}</div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                     @yield('content')
+
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">

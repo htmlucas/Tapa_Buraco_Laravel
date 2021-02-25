@@ -11,8 +11,8 @@
                     <a href="{{ route('usuarios.create') }}" class="btn btn-success">Novo usuario</a>
                 </div>
                 <div class="col-12 mt-4">
-                    <table class="table table-hover">
-                        <thead class="thead-dark">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-active">
                             <tr>
                                 <th>Nome</th>
                                 <th>Email</th>

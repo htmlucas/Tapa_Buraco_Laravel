@@ -7,41 +7,55 @@
             <form action="{{ route ('reclamacoes.updateconcerto',$reclamacoes->id)}}" method="POST">
                 @csrf
                 @method('PUT')
-                <table class="table table-hover table-striped table-dark mt-2"> 
+                <table class="table table-hover mt-2"> 
                     <tr>
-                        <th>DATA</th>
-                        <td>{{ $reclamacoes->created_at }}</td>
+                        <th class="table-active">DATA</th>
+                        <td>{{ $reclamacoes->created_at->format('d/m/Y H:i:s') }}</td>
                     </tr>
                     <tr>
-                        <th>RESPONSÁVEL PELO CHAMADO</th>
+                        <th class="table-active">RESPONSÁVEL PELO CHAMADO</th>
                         <td>{{ $reclamacoes->nome }}</td>
                     </tr>
                     <tr>
-                        <th>CEP</th>
+                        <th class="table-active">CEP</th>
                         <td>{{ $reclamacoes->cep }}</td>
                     </tr>
                     <tr>
-                        <th>RUA</th>
+                        <th class="table-active">RUA</th>
                         <td>{{ $reclamacoes->rua }}</td>
                     </tr>
                     <tr>
-                        <th>BAIRRO</th>
+                        <th class="table-active">BAIRRO</th>
                         <td>{{ $reclamacoes->bairro }}</td>
                     </tr>
                     <tr>
-                        <th>OBSERVAÇÃO</th>
+                        <th class="table-active">CIDADE</th>
+                        <td>{{$reclamacoes->cidade}}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-active">NUMERO DA CASA</th>
+                        <td>{{$reclamacoes->numero}}</td>
+                    </tr>
+                    <tr>
+                        <th class="table-active">OBSERVAÇÃO</th>
                         <td>{{ $reclamacoes->obs }}</td>
                     </tr>
                     <tr>
-                        <th>STATUS</th>
-                        <td><input type="text" name="status" value="{{ $reclamacoes->status }}"></td>
+                        <th class="table-active">STATUS</th>
+                        <td>
+                            <select name="status" id="">
+                                <option value="0" Selected>Abra para mudar o status</option>
+                                <option value="Aberto">Aberto</option>
+                                <option value="Concluido">Concluido</option>
+                            </select>
+                        </td>
                     </tr>    
                     <tr>
-                        <th>AGENDAMENTO</th>
+                        <th class="table-active">AGENDAMENTO</th>
                         <td>{{ $reclamacoes->agendado }}</td>
                     </tr>
                     <tr>
-                        <th>FUNCIONARIO RESPONSÁVEL</th>
+                        <th class="table-active">FUNCIONARIO RESPONSÁVEL</th>
                         <td>{{ $reclamacoes->usuario->nome }}   </td>
                     </tr>   
                     <tr>

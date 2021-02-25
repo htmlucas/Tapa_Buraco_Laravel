@@ -6,6 +6,8 @@ use App\Reclamacao;
 use Illuminate\Http\Request;
 use App\Http\Requests\ReclamacaoRequest;
 use App\Usuario;
+use App\Http\Requests\UpdateRequest;
+use App\Http\Requests\UpdateConcertoRequest;
 
 class ReclamacoesController extends Controller
 {
@@ -32,6 +34,7 @@ class ReclamacoesController extends Controller
     }
     public function store(ReclamacaoRequest $request){     
         try{
+
             $reclamacao = new Reclamacao;
 
             $reclamacao->nome = $request->nome;
@@ -39,9 +42,11 @@ class ReclamacoesController extends Controller
             $reclamacao->cep = $request->cep;
             $reclamacao->rua = $request->rua;
             $reclamacao->bairro = $request->bairro;
+            $reclamacao->cidade = $request->cidade;
+            $reclamacao->numero = $request->numero;
             $reclamacao->obs = $request->observacao;
             $reclamacao->status = "Aberto";
-            $reclamacao->agendado = "Em andamento...";
+            $reclamacao->agendado = "Em andamento";
             $reclamacao->id_usuario;
 
             $reclamacao->save();
@@ -56,13 +61,13 @@ class ReclamacoesController extends Controller
     }
 
     
-    public function update(Request $request, $id){
+    public function update(UpdateRequest $request, $id){
         
         $reclamacao = Reclamacao::find($id);
         
     
 
-        $reclamacao->status = $request->status;
+        $reclamacao->status = 'Agendado';
         $reclamacao->agendado =$request->agendado;
         $reclamacao->id_usuario = $request->id_funcionario;
         
@@ -95,7 +100,7 @@ class ReclamacoesController extends Controller
         
         return view('funcionario.concerto',compact('reclamacoes','usuario'));
     }
-    public function updateconcerto(Request $request, $id)
+    public function updateconcerto(UpdateConcertoRequest $request, $id)
     {
         $reclamacao = Reclamacao::find($id);
 

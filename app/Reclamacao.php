@@ -18,4 +18,21 @@ class Reclamacao extends Model
     public function usuario(){
         return $this->belongsTo('App\Usuario','id_usuario');
     }
+
+    public function getAgendadoAttribute($value)
+    {
+
+        $divisor = explode("-", $value);
+
+        // Inverte os pedaços
+        $reverso = array_reverse($divisor);
+
+        // Junta novamente a matriz em texto
+        $final = implode("/", $reverso); // Junta com espaço
+
+        return $final;
+        
+
+
+    }
 }

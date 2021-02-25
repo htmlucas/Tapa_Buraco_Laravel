@@ -1,12 +1,7 @@
 @extends('layout.app')
 @section('content')
-    
-    @if($errors)
-        @foreach($errors->all() as $error)
-            <div class="">{{ $error}}</div>
-        @endforeach
-    @endif
-<div class="container">
+ 
+<div class="container-fluid">
     <main>
             <h1>Reclame Aqui!</h1>       
             <form method="POST" action="{{ route('reclamacoes.store') }}">
@@ -25,7 +20,7 @@
                 <div class="form-row">
                     <div class="col form-group">
                         <label for="endereco">CEP</label>
-                        <input type="text" id="cep" name="cep" class="form-control" name="endereco" placeholder="Informe o CEP da rua">
+                        <input type="text" id="cep" size="10" maxlength="9" name="cep" class="form-control" name="endereco" placeholder="Informe o CEP da rua">
                     </div>
                     <div class="col form-group">
                         <label for="rua">Logradouro</label>
@@ -34,6 +29,19 @@
                     <div class="col form-group">
                         <label for="bairro">Bairro</label>
                         <input type="text" name="bairro" class="form-control" id="bairro" placeholder="Informe o Bairro">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col form-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Informe a Cidade">
+                    </div>
+                    <div class="col form-group">
+                        <label for="numero">Numero da Casa</label>
+                        <input type="number" class="form-control" name="numero" id="numero" min="1" placeholder="Informe o Numero da Casa">
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Coloque o número da casa de refêrencia ao buraco!
+                          </small>
                     </div>
                 </div>
                 <div class="form-row">
@@ -62,6 +70,7 @@
             success: function(data){
                $('#rua').val(data.logradouro);
                $('#bairro').val(data.bairro);
+               $('#cidade').val(data.localidade);
             }
         });
     });

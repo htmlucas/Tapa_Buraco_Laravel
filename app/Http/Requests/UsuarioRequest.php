@@ -38,7 +38,7 @@ class UsuarioRequest extends FormRequest
             'unique' => 'Já existe este :attribute cadastrado',
             'min' => 'O campo :attribute deve possuir no minimo :min caracteres',
             'max' => 'O campo :attribute deve possuir no maximo :max caracteres',
-            'confirmed' => 'A confirmação do campo :attribute nao é valida'
+            'confirmed' => 'A confirmação do campo :attribute não é valida'
 
         ];
 
