@@ -22,12 +22,12 @@
 
                     <div class="form-group">
                         <label for="">Nome</label>
-                        <input type="text" name="nome" class="form-control" value="{{ old('nome','') }}">
+                        <input type="text" name="nome" class="form-control" value="{{ old('nome')??'' }}">
                     </div>
                     
                     <div class="form-group">
                         <label for="">Email</label>
-                        <input type="email" name="email" class="form-control" value="{{ old('email','') }}">
+                        <input type="email" name="email" class="form-control" value="{{ old('email')??'' }}">
                     </div>
 
                     <div class="form-group">

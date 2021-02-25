@@ -15,11 +15,12 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
         $credentials = [
             'email'=>$request->email,
             'password'=>$request->password
         ];
-
+        
         if(Auth::attempt($credentials))
         {
             return redirect()->route('dashboard.index');

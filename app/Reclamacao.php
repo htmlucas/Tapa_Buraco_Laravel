@@ -10,7 +10,12 @@ class Reclamacao extends Model
     use SoftDeletes;
     
     protected $table = 'reclamacoes';
+
     protected $fillable = [
-        'nome', 'email', 'cep','rua','bairro','observacao','status','agendado','created_at'
+        'nome', 'email', 'cep','rua','bairro','observacao','status','agendado','created_at','id_usuario'
     ];
+
+    public function usuario(){
+        return $this->belongsTo('App\Usuario','id_usuario');
+    }
 }

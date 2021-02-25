@@ -3,8 +3,8 @@
 <div class="container">
     <main>
         <div class="conteudo">
-            <h1>Página inicial de atualizar agendamentos !</h1>  
-            <form action="{{ route ('reclamacoes.update',$reclamacoes->id)}}" method="POST">
+            <h1>Confirmar Concerto!</h1>  
+            <form action="{{ route ('reclamacoes.updateconcerto',$reclamacoes->id)}}" method="POST">
                 @csrf
                 @method('PUT')
                 <table class="table table-hover table-striped table-dark mt-2"> 
@@ -38,19 +38,11 @@
                     </tr>    
                     <tr>
                         <th>AGENDAMENTO</th>
-                        <td><input type="date" name="agendado"></td>
+                        <td>{{ $reclamacoes->agendado }}</td>
                     </tr>
                     <tr>
                         <th>FUNCIONARIO RESPONSÁVEL</th>
-                        <td>
-                            <select name="id_funcionario" class="form-select" id="">
-                                <option selected>Abra para selecionar o funcionario</option>
-                                @foreach($funcionarios as $funcionario )
-                                      <option value="{{ $funcionario->id }}">{{ $funcionario->nome }}</option>
-                                @endforeach
-
-                            </select>
-                        </td>
+                        <td>{{ $reclamacoes->usuario->nome }}   </td>
                     </tr>   
                     <tr>
                         <th colspan="2">

@@ -37,4 +37,8 @@ class Usuario extends Authenticatable
 
 
     }
+
+    public function reclamacoes(){
+        return $this->hasMany('App\Reclamacao');
+    }
 }

@@ -23,9 +23,8 @@
             @endif
             <div class="row">
                 <div class="col-12">
-                    <h1 class="h1 d-flex justify-content-center">Lista de Reclamações</h1>
+                    <h1 class="h1 d-flex justify-content-center">Lista de trabalhos: {{ auth()->user()->nome }}</h1>
                     <table class="table table-hover table-striped table-dark mt-2">
-                        @foreach($reclamacoes as $reclamacao)
                         <thead class="">
                             <tr>
                                 <th>DATA</th>
@@ -36,18 +35,12 @@
                                 <th>OBSERVAÇÃO</th>
                                 <th>STATUS</th>
                                 <th>AGENDAMENTO</th>
-                                @if($reclamacao->id_usuario != '')
-                                    <th>Funcionario Responsavel</th>
-                                @endif
-                                @if(auth()->user())
-                                    @if(auth()->user()->tipo_usuario == 'admin')
-                                        <th colspan="2">Confirmar concerto?</th>
-                                    @endif
-                                @endif
+                                <th>Funcionario Responsavel</th>
+                                <th>Confirmar concerto?</th>
                             </tr>
                         </thead>
                         <tbody>
-                           
+                            @foreach($reclamacoes as $reclamacao)
                                 <tr>
                                     <td>{{ $reclamacao->created_at }}</td>
                                     <td>{{ $reclamacao->nome }}</td>
@@ -57,23 +50,10 @@
                                     <td>{{ $reclamacao->obs }}</td>
                                     <td>{{ $reclamacao->status }}</td>
                                     <td>{{ $reclamacao->agendado }}</td>
-                                   
-                                    
-                                    @if($reclamacao->id_usuario != '')
-                                        <td>{{ $reclamacao->usuario->nome }}</td>
-                                    @endif
-                                       
-                                    @if(auth()->user())
-                                        @if(auth()->user()->tipo_usuario == 'admin')
-                                            <td colspan="2" >
-                                                    <form action="{{ route('reclamacoes.confirm', $reclamacao->id)}}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Confirmar</button>
-                                                    </form>    
-                                            </td>
-                                        @endif
-                                    @endif
+                                    <td>{{ $reclamacao->usuario->nome}}</td>
+                                    <td><a class="btn btn-info" href="{{ route('reclamacoes.concerto', $reclamacao->id)}}">Editar</a>
+                                                
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

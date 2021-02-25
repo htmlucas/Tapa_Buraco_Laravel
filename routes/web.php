@@ -23,20 +23,16 @@ Route::middleware('guest')->group(function(){
 });
 
 
-Route::get('logout','LoginController@logout')->name('login.logout');
-
-//somente usuario autenticado
-Route::middleware('auth')->group(function()
-{
+    //Login
+    Route::get('logout','LoginController@logout')->name('login.logout');
 
     //Dashboard
     Route::get('dashboard','DashboardController@index')->name('dashboard.index');
 
-    //usuario
-    Route::resource('usuarios','UsuarioController')->middleware('is-admin');
+    
+    //Usuarios
+    Route::resource('usuarios','UsuarioController')->middleware('is-admin','is-funcionario');
 
-    //Employees = funcionarios
-    Route::resource('employees','EmployeesController');
 
     //reclamacoes
     Route::put('/reclamacoes/{id}','ReclamacoesController@update')->name('reclamacoes.update');
@@ -46,13 +42,27 @@ Route::middleware('auth')->group(function()
     Route::delete('/reclamacoes/{id}','ReclamacoesController@confirm')->name('reclamacoes.confirm');
     Route::get('/reclamacoes','ReclamacoesController@index')->name('reclamacoes.index');
     Route::post('/reclamacoes','ReclamacoesController@store')->name('reclamacoes.store');
+    Route::post('/reclamacoes/ordens/{id}','ReclamacoesController@ordens')->name('reclamacoes.ordens');
+    Route::get('/reclamacoes/{id}/concerto','ReclamacoesController@concerto')->name('reclamacoes.concerto');
+    Route::put('/reclamacoes/concerto/{id}','ReclamacoesController@updateconcerto')->name('reclamacoes.updateconcerto');
 
 
 
     Route::get('/', function () {
-        return view('index');
+        return view('dashboard');
     });
 
+
+
+
+
+
+
+
+
+//somente usuario autenticado
+Route::middleware('auth')->group(function()
+{
 
 });
 
