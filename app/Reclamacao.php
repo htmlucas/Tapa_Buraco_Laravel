@@ -12,7 +12,7 @@ class Reclamacao extends Model
     protected $table = 'reclamacoes';
 
     protected $fillable = [
-        'nome', 'email', 'cep','rua','bairro','observacao','status','agendado','created_at','id_usuario'
+        'nome', 'email', 'cep','rua','bairro','cidade','numero','obs','status','agendado'
     ];
 
     public function usuario(){

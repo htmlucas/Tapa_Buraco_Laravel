@@ -29,6 +29,9 @@ Route::middleware('guest')->group(function(){
     //Dashboard
     Route::get('dashboard','DashboardController@index')->name('dashboard.index');
 
+    //Reports
+    Route::get('reports/funcionarios','ReportController@generateEmployeesReport')->name('reports.employees');
+
     
     //Usuarios
     Route::resource('usuarios','UsuarioController')->middleware('is-admin','is-funcionario');
@@ -45,7 +48,9 @@ Route::middleware('guest')->group(function(){
     Route::post('/reclamacoes/ordens/{id}','ReclamacoesController@ordens')->name('reclamacoes.ordens');
     Route::get('/reclamacoes/{id}/concerto','ReclamacoesController@concerto')->name('reclamacoes.concerto');
     Route::put('/reclamacoes/concerto/{id}','ReclamacoesController@updateconcerto')->name('reclamacoes.updateconcerto');
-
+    Route::post('/reclamacoes/import','ReclamacoesController@import')->name('reclamacoes.import');
+    /* Route::get('/reclamacoes/export','ReclamacoesController@export')->name('reclamacoes.export'); */
+    Route::post('/reclamacoes/export','ReclamacoesController@export')->name('reclamacoes.export');
 
 
     Route::get('/', function () {

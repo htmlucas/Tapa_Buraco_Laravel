@@ -85,6 +85,47 @@
                         </tbody>
                     
                     </table>
+
+                    {{-- <div class="row m-2">
+                        <div class="col-12">
+                            <a href="{{ route('reclamacoes.export')}}" class="btn btn-success">Exportar para csv</a>
+                        </div>
+                    </div> --}}
+
+                    <div class="row m-2">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header bg-dark text-white">
+                                    Exportação
+                                </div>
+                                <div class="card-body">
+                                    <form action="{{route('reclamacoes.export')}}" method="POST">
+                                        @csrf 
+                                        <div class="row align-items-end justify-content-center">
+                                            <div class="col-12 col-sm-3">
+                                                <label for="">Data Inicial</label>
+                                                <input type="text" name="date_start" class="form-control">
+                                            </div>
+                                            <div class="col-12 col-sm-3">
+                                                <label for="">Data Final</label>
+                                                <input type="text" name="date_end" class="form-control">
+                                            </div>
+                                            <div class="col-12 col-sm-3">
+                                                <label for="">Tipo de Arquivo de Exportação</label>
+                                                <select class="form-control" name="export_file_type" id="">
+                                                    <option value="csv">CSV</option>
+                                                    <option value="xls">XLS</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 col-sm-3">
+                                                <button type="submit" class="btn btn-success">Exportar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>            

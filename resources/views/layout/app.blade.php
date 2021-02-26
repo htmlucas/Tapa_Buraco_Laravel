@@ -112,19 +112,37 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-
-                    @if($errors->any())
+                        <!-- ERRORS -->
+                        @if($errors->any())
+                            <div class="row mt-3 mb-3">
+                                <div class="col-12">
+                                    <div class="alert alert-danger" role="alert">
+                                        @foreach($errors->all() as $error)
+                                            <div class="">{{ $error }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        @if(session()->has('msg_success'))
                         <div class="row mt-3 mb-3">
                             <div class="col-12">
-                                <div class="alert alert-danger" role="alert">
-                                    @foreach($errors->all() as $error)
-                                        <div class="">{{ $error }}</div>
-                                    @endforeach
+                                <div class="alert alert-success" role="alert">
+                                    {{ session()->get('msg_success') }}
                                 </div>
                             </div>
                         </div>
-                    @endif
-
+                        @endif
+                        @if(session()->has('msg_error'))
+                        <div class="row mt-3 mb-3">
+                            <div class="col-12">
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session()->get('msg_error') }}
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        <!-- FIM DOS ERRORS --> 
                     @yield('content')
 
                 </main>

@@ -8,6 +8,10 @@ use App\Http\Requests\ReclamacaoRequest;
 use App\Usuario;
 use App\Http\Requests\UpdateRequest;
 use App\Http\Requests\UpdateConcertoRequest;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ReclamacaoImport;
+use App\Exports\ReclamacaoExport;
+use Carbon\Carbon; 
 
 class ReclamacoesController extends Controller
 {
@@ -109,5 +113,38 @@ class ReclamacoesController extends Controller
         $reclamacao->save();
 
         return redirect()->route('reclamacoes.index');
+    }
+
+    public function import(Request $request)
+{                               //nome do arquivo
+        $file = $request->files->get('file');
+
+        try {
+            Excel::import(new ReclamacaoImport,$file);
+        } catch (\Exception $ex) {
+            return back()->with('msg_error','Importação cancelada, sem cabeçalho na hora de identificar os dados!');
+        }
+
+        return back()->with('msg_success','Reclamacao Importado com sucesso!');
+
+    }
+
+    /* public function export()
+    {
+
+        return Excel::download(new ReclamacaoExport,'reclamacoes.xls');
+
+
+    } */
+
+    public function export(Request $request)
+    {
+        $dateStart = Carbon::parse($request->date_start)->startOfDay();
+        $dateEnd = Carbon::parse($request->date_end)->endOfDay();
+        $exportFileType = $request->export_file_type;
+ 
+
+        return Excel::download(new ReclamacaoExport($dateStart,$dateEnd),'reclamacoes.'.$exportFileType);
+
     }
 }
