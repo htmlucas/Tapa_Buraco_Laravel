@@ -77,7 +77,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="{{route('reclamacoes.create')}}">Criar uma reclamação</a>
                                     <a class="nav-link" href="{{ route('reclamacoes.index')}}">Reclamações em Aberto</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Reclamações encerradas</a>
+                                    <a class="nav-link" href="{{ route('reclamacoes.encerradas')}}">Reclamações encerradas</a>
                                 </nav>
                             </div>
 

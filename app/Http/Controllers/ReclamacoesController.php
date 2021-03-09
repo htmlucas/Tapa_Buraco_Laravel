@@ -95,14 +95,25 @@ class ReclamacoesController extends Controller
         
         $reclamacoes = Reclamacao::where('id_usuario',$id)->get();
 
-        return view('funcionario.ordens',compact('reclamacoes'));
+        if($reclamacoes== '[]')
+        {
+            $msg = 'Não há registros de trabalhos no nosso sistema!';
+            return view('funcionario.ordens',compact('msg'));
+        }else{
+            $msg = 'Lista de Trabalhos';
+            return view('funcionario.ordens',compact('reclamacoes','msg'));
+        }
+
     }
 
     public function concerto($id){
         $reclamacoes = Reclamacao::find($id);
+
         $usuario = Usuario::where('id',$reclamacoes->id_usuario)->get();
         
         return view('funcionario.concerto',compact('reclamacoes','usuario'));
+        
+        
     }
     public function updateconcerto(UpdateConcertoRequest $request, $id)
     {
@@ -146,5 +157,11 @@ class ReclamacoesController extends Controller
 
         return Excel::download(new ReclamacaoExport($dateStart,$dateEnd),'reclamacoes.'.$exportFileType);
 
+    }
+
+    public function endReclamacoes()
+    {
+        $reclamacoes = Reclamacao::onlyTrashed()->get();
+        return view('reclamacoes_encerradas',compact('reclamacoes'));
     }
 }

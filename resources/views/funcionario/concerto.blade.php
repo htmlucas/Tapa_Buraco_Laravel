@@ -44,7 +44,7 @@
                         <th class="table-active">STATUS</th>
                         <td>
                             <select name="status" id="">
-                                <option value="0" Selected>Abra para mudar o status</option>
+                                <option value="" Selected>Abra para mudar o status</option>
                                 <option value="Aberto">Aberto</option>
                                 <option value="Concluido">Concluido</option>
                             </select>

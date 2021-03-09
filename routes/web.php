@@ -51,10 +51,11 @@ Route::middleware('guest')->group(function(){
     Route::post('/reclamacoes/import','ReclamacoesController@import')->name('reclamacoes.import');
     /* Route::get('/reclamacoes/export','ReclamacoesController@export')->name('reclamacoes.export'); */
     Route::post('/reclamacoes/export','ReclamacoesController@export')->name('reclamacoes.export');
+    Route::get('/reclamacoes/reclamacoes-encerradas','ReclamacoesController@endReclamacoes')->name('reclamacoes.encerradas');
 
 
     Route::get('/', function () {
-        return view('dashboard');
+        return view('login');
     });
 
 

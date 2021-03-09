@@ -33,7 +33,8 @@
                                         @yield('content')
                                     </div>
                                     <div class="card-footer text-center">
-                                        <div class="small"><a href="register.html">Precisa de uma conta? Registre - se !</a></div>
+                                        <div class="small"><a href="{{ route('dashboard.index') }}">Novo? Inicie sem uma conta</a></div>
+                                        <div class="small"><a href="register.html">Esqueceu a senha?</a></div>
                                     </div>
                                 </div>
                             </div>

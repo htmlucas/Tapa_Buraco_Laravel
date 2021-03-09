@@ -1,0 +1,16 @@
+-- auto-generated definition
+create table edu_cad_secretaria_noticias
+(
+    noticia_ID               int(11) unsigned auto_increment
+        primary key,
+    cadastro_COD             bigint                                 null comment 'ID do Cadastro Geral do Funcionário Responsável pelo Cadastro/Atualização',
+    noticia_titulo           varchar(155)                           not null,
+    noticia_tipo_COD         varchar(20)                            not null comment 'Cód. Tipo de Notícia',
+    noticia_descrição        longtext                               null comment 'Linha Fina',
+    noticia_texto            longtext                               not null comment 'Texto',
+    noticia_data             timestamp  default current_timestamp() not null comment 'Data do Registro',
+    noticia_data_atualizacao timestamp  default current_timestamp() not null on update current_timestamp() comment 'Data da Última Atualização do Registro',
+    noticia_status           tinyint(1) default 1                   not null comment '0 - Inativo / 1 - Ativo',
+    noticia_situacao         tinyint(1) default 1                   not null comment '0 - Inativo / 1 - Ativo'
+);
+
