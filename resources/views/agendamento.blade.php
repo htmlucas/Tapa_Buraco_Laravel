@@ -23,7 +23,7 @@
                 <tbody>
                     @foreach($reclamacoes as $reclamacao)
                         <tr>
-                            <td>{{ $reclamacao->created_at->format('d/m/Y H:i:s') }}</td>
+                            <td>{{ $reclamacao->created_at->format('d/m/Y') }}</td>
                             <td>{{ $reclamacao->nome }}</td>
                             <td>{{ $reclamacao->cep }}</td>
                             <td>{{ $reclamacao->rua }}</td>

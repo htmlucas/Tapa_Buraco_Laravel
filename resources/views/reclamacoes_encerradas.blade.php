@@ -22,7 +22,7 @@
         @endif
         <div class="row">
             <div class="col-12">
-                <h1 class="h1 d-flex justify-content-center">Lista de Reclamações Encerradas</h1>
+                <h1 class="h1 d-flex justify-content-center">Lista de Reclamações Concluidas</h1>
                 <table class="table table-bordered table-hover mt-2">
                     <thead class="table-active">
                         <tr>
@@ -42,7 +42,7 @@
                     <tbody>
                         @foreach($reclamacoes as $reclamacao)
                             <tr>
-                                <td>{{ $reclamacao->created_at->format('d/m/Y H:i:s') }}</td>
+                                <td>{{ $reclamacao->created_at->format('d/m/Y') }}</td>
                                 <td>{{ $reclamacao->nome }}</td>
                                 <td>{{ $reclamacao->cep }}</td>
                                 <td>{{ $reclamacao->rua }}</td>                                    

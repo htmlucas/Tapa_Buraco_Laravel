@@ -3,25 +3,6 @@
     
     <div class="container-fluid">
         <div class="row">
-            @if(session()->has('msg_success'))
-            <div class="row mt-3 mb-3">
-                <div class="col-12">
-                    <div class="alert alert-success" role="alert">
-                        {{ session()->get('msg_success') }}
-                    </div>
-                </div>
-            </div>
-            @endif
-            @if(session()->has('msg_error'))
-            <div class="row mt-3 mb-3">
-                <div class="col-12">
-                    <div class="alert alert-danger" role="alert">
-                        {{ session()->get('msg_error') }}
-                    </div>
-                </div>
-            </div>
-            @endif
-            <div class="row">
                 <div class="col-12">
                     <h1 class="h1 d-flex justify-content-center">Lista de Reclamações</h1>
                     <table class="table table-bordered table-hover mt-2">
@@ -49,7 +30,7 @@
                         <tbody>
                             @foreach($reclamacoes as $reclamacao)
                                 <tr>
-                                    <td>{{ $reclamacao->created_at->format('d/m/Y H:i:s') }}</td>
+                                    <td>{{ $reclamacao->created_at->format('d/m/Y') }}</td>
                                     <td>{{ $reclamacao->nome }}</td>
                                     <td>{{ $reclamacao->cep }}</td>
                                     <td>{{ $reclamacao->rua }}</td>                                    
@@ -127,7 +108,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>            
     </div>
 @endsection            

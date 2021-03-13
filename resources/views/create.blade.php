@@ -20,7 +20,7 @@
                 <div class="form-row">
                     <div class="col form-group">
                         <label for="endereco">CEP</label>
-                        <input type="text" id="cep" size="10" maxlength="9" name="cep" class="form-control" name="endereco" placeholder="Informe o CEP da rua">
+                        <input type="text" id="cep" size="10" onkeypress="mascara(this, '#####-###')" maxlength="9" name="cep" class="form-control" name="endereco" placeholder="Informe o CEP da rua">
                     </div>
                     <div class="col form-group">
                         <label for="rua">Logradouro</label>
@@ -60,6 +60,15 @@
 
 @section('js')
     <script>
+        function mascara(t, mask){
+            var i = t.value.length;
+            var saida = mask.substring(1,0);
+            var texto = mask.substring(i)
+            if (texto.substring(0,1) != saida){
+            t.value += texto.substring(0,1);
+            }
+        }
+
     $(document).on('blur','#cep',function(){
         let cep = $(this).val();
 

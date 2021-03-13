@@ -12,8 +12,8 @@ class ReclamacaoExport implements FromCollection
 
    public function __construct($dateStart , $dateEnd)
    {
-        $this->dateStart = $dateStart;
-        $this->dateEnd = $dateEnd;
+        $this->dateStart = $dateStart->format('Y/m/d');
+        $this->dateEnd = $dateEnd->format('Y/m/d');
         
    }
     public function collection()
