@@ -62,5 +62,5 @@ tabelas no banco de dados e depois o comando php artisan serve para executar o
 projeto
 
 ## Projeto
-- Tem um video acadêmico realizado por mim mesmo com a apresentação do tema do trabalho e de todo o funcionamento do mesmo, caso tenha interesse:
+- Tenho um video acadêmico onde eu explico o tema do trabalho e de todo o funcionamento do mesmo, caso tenha interesse:
     ## https://drive.google.com/file/d/1cESshU6fr8hM_iv437aNKVMMftZ3evW3/view?usp=sharing
